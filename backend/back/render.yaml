@@ -1,0 +1,92 @@
+services:
+  - type: web
+    name: playbeat-backend
+    runtime: node
+    plan: standard
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: FRONTEND_URL
+        value: "https://playbeat.digital"
+      - key: MONGODB_URI
+        fromDatabase:
+          name: playbeat-db
+          property: connectionString
+      - key: SECRET_KEY
+        sync: false
+      - key: JWT_EXPIRATION
+        value: "7d"
+      # Stripe Configuration
+      - key: STRIPE_ACCOUNT_ID
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_RESTRICTED_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      # JazzCash Configuration
+      - key: JAZZCASH_MERCHANTID
+        sync: false
+      - key: JAZZCASH_PASSWORD
+        sync: false
+      - key: JAZZCASH_HASHKEY
+        sync: false
+      - key: JAZZCASH_RETURNURL
+        value: "https://api.playbeat.digital/api/payments/jazzcash/callback"
+      - key: JAZZCASH_PAYMENTMODE
+        value: "sandbox"
+      - key: JAZZCASH_MPIN
+        value: "03318333368"
+      - key: JAZZCASH_TIMEZONE
+        value: "Asia/Karachi"
+      # Bank Alfalah Configuration
+      - key: ALFAPAY_API_URL
+        value: "https://sandbox.bankalfalah.com/HS/api/HSAPI/HSAPI"
+      - key: ALFAPAY_MODE
+        value: "sandbox"
+      - key: ALFAPAY_CHANNEL_ID
+        value: "1002"
+      - key: ALFAPAY_MERCHANT_ID
+        value: "197"
+      - key: ALFAPAY_STORE_ID
+        value: "000001"
+      - key: ALFAPAY_RETURN_URL
+        value: "https://api.playbeat.digital/api/payments/alfalah/callback"
+      - key: ALFAPAY_MERCHANT_USERNAME
+        sync: false
+      - key: ALFAPAY_MERCHANT_PASSWORD
+        sync: false
+      - key: ALFAPAY_MERCHANT_HASH
+        sync: false
+      - key: ALFAPAY_KEY_1
+        sync: false
+      - key: ALFAPAY_KEY_2
+        sync: false
+      # Meezan Bank Configuration
+      - key: MEZPAY_USERNAME
+        sync: false
+      - key: MEZPAY_PASSWORD
+        sync: false
+      - key: MEZPAY_SUCCESS_CALLBACK
+        value: "https://api.playbeat.digital/api/payments/meezan/success"
+      - key: MEZPAY_FAILED_CALLBACK
+        value: "https://api.playbeat.digital/api/payments/meezan/failed"
+      # Logging
+      - key: LOG_LEVEL
+        value: "info"
+
+databases:
+  - name: playbeat-db
+    databaseName: playbeat
+    user: admin
+
+# Note: Add environment variables directly in Render Dashboard, not in YAML
+# Go to Dashboard → Environment and add all required secrets there
+# This keeps sensitive credentials out of version control
