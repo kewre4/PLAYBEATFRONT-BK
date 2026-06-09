@@ -1,0 +1,7 @@
+node_modules
+2
+deploy
+.git
+.env
+.env.example
+README.md

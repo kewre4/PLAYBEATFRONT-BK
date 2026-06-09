@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: playbeat-backend
+    env: node
+    repo: "<REPO_URL>" # set to your Git repo (e.g. https://github.com/you/playbeat)
+    branch: main
+    plan: free
+    buildCommand: "cd 2 && npm install --legacy-peer-deps"
+    startCommand: "cd 2 && npm start"
+    env:
+      - key: MONGODB_URI
+        value: "mongodb+srv://playbeatdigital:A3bE17J0zUPZQ5FE@playbeatdep.c1rxiyu.mongodb.net/?appName=playbeatdep"
+      - key: JWT_SECRET
+        value: "A3bE17J0zUPZQ5FE"
+      - key: SECRET_KEY
+        value: "A3bE17J0zUPZQ5FE"
+      - key: PORT
+        value: "3000"
+      - key: STRIPE_ACCOUNT_ID
+        value: "your_stripe_account_id"
+      - key: STRIPE_PUBLISHABLE_KEY
+        value: "your_stripe_publishable_key"
+      - key: STRIPE_SECRET_KEY
+        value: "your_stripe_secret_key"
+      - key: STRIPE_RESTRICTED_KEY
+        value: "your_stripe_restricted_key"
+      - key: ALFAPAY_API_URL
+        value: "https://sandbox.bankalfalah.com/HS/api/HSAPI/HSAPI"
+      - key: ALFAPAY_MODE
+        value: "sandbox"
+      - key: ALFAPAY_RETURN_URL
+        value: "https://playbeat.digital"
+      - key: FRONTEND_URL
+        value: "https://playbeat.digital"
