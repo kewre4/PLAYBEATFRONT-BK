@@ -1,23 +1,25 @@
 {
     "version": 2,
     "scope": "team_OHrUKs5OeS1mGpkw4FekDHSp",
-    "builds": [
-        {
-            "src": "1/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "1/dist"
-            }
-        }
-    ],
+    "buildCommand": "npm install && npm run build",
+    "outputDirectory": "frontend/front/dist",
     "env": {
-        "VITE_API_URL": "@vite_api_url",
-        "VITE_STRIPE_PUBLISHABLE_KEY": "@vite_stripe_key"
+        "VITE_API_URL": "https://api.playbeat.digital",
+        "VITE_STRIPE_PUBLISHABLE_KEY": "pk_test_51TMvD1K7C5jIjluKwjpb2ZJzlZoH4I9hxOwbcZkXr15wNvaLLX7wHpfeTw6Eu09O0aZDCpWo6ptHvoQjhloFApJ200lkcdWYVw"
     },
     "routes": [
         {
-            "src": "/api/(.*)",
-            "dest": "/api/$1"
+            "src": "^/api/(.*)",
+            "dest": "https://api.playbeat.digital/api/$1",
+            "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+        },
+        {
+            "src": "/admin",
+            "dest": "/admin.html"
+        },
+        {
+            "src": "/unified",
+            "dest": "/playbeat_unified_fixed.html"
         },
         {
             "src": "/(.*)",
