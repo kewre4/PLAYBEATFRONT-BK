@@ -7,9 +7,8 @@
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
     "env": {
-        "VITE_API_URL": {
-            "default": "https://api.playbeat.digital"
-        }
+        "VITE_API_URL": "https://api.playbeat.digital",
+        "VITE_STRIPE_PUBLISHABLE_KEY": "@vite_stripe_publishable_key"
     },
     "routes": [
         {
