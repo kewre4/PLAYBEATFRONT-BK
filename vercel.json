@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "scope": "team_OHrUKs5OeS1mGpkw4FekDHSp",
     "buildCommand": "npm install && npm run build",
     "outputDirectory": "frontend/front/dist",
     "env": {
